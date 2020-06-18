@@ -10,11 +10,8 @@ A CMS-style blog-site where developers can publish their blog posts and comment 
 * [Express.js](https://expressjs.com/)
 * [Node.js](https://nodejs.org/en/)
 * [MySQL2](https://www.npmjs.com/package/mysql2)
-* [Inquirer](https://www.npmjs.com/package/inquirer)
 * [Insomnia](https://insomnia.rest/)
-* [Console.table](https://www.npmjs.com/package/console.table)
-* [Chalk](https://www.npmjs.com/package/chalk-table)
-* [Heroku]()
+* [Heroku](https://www.heroku.com/home)
 * [Handlebars.js](https://handlebarsjs.com/)
 * [Dotenv](https://www.npmjs.com/package/dotenv)
 * [BCrypt](https://www.npmjs.com/package/bcrypt)
@@ -69,3 +66,13 @@ A CMS-style blog-site where developers can publish their blog posts and comment 
 `npm install express-handlebars`
 
 `npm i express-session connect-session-sequelize`
+
+`npm i jest -D`
+
+`npm install dotenv`
+
+`npm install bcrypt`
+
+`npm install handlebars`
+
+`npm install express --save`
