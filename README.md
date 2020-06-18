@@ -63,7 +63,13 @@ A CMS-style blog-site where developers can publish their blog posts and comment 
 
 ## :memo: Instructions
 
+`npm init`
+
+`npm install express sequelize mysql2`
+
 `npm install express-handlebars`
+
+`npm install --save sequelize`
 
 `npm i express-session connect-session-sequelize`
 
