@@ -7,10 +7,11 @@ router.get("/", (req, res) => {
   console.log(req.session);
   Post.findAll({
     attributes: ["id", "title", "post_url", "created_at"],
-    include: [{ Comment, User }],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
+      console.log(posts);
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -31,6 +32,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// Find a post by id
 router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {

@@ -12,13 +12,13 @@
   
   a {
     text-decoration: none;
-    color: #225ca3;
+    color: black;
     font-weight: bold;
     transition: color .1s;
   }
   
   a:hover {
-    color: #3486eb;
+    color: white;
   }
   
   button {
@@ -77,13 +77,21 @@
   header {
     border-bottom: 1px solid #ccc;
     display: flex;
+    background: #349beb;
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
   }
   
   header h1 {
-    font-size: 1em;
+    font-size: 28px;
+    font-variant: small-caps;
+  }
+  
+  nav li {
+    display: contents;
+    text-align: center;
+    font-variant: small-caps;
   }
   
   main {
@@ -174,5 +182,9 @@
     display: flex;
     justify-content: center;
     padding: 1%;
-    font-size: 110%;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #3486eb;
+    color: black;
+    font-variant: small-caps;
   }

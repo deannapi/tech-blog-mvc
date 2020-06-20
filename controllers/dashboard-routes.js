@@ -10,7 +10,7 @@ router.get("/", withAuth, (req, res) => {
       user_id: req.session.user_id,
     },
     attributes: ["id", "post_url", "title", "created_at"],
-    include: [{ Comment, User }],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
       // serialize data before passing to template
