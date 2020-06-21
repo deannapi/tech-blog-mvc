@@ -29,7 +29,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
       id: req.params.id,
     },
     attributes: ["id", "title", "post_url", "created_at"],
-    include: [{ Comment, User }],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
       if (!dbPostData) {
