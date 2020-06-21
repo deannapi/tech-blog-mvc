@@ -39,6 +39,7 @@
   .post-list {
     margin: 0;
     padding: 0;
+    height: ;
   }
   
   textarea, input {
@@ -128,26 +129,37 @@
   .post {
     margin-bottom: 2%;
     line-height: 150%;
+    border:  #1d1a69 solid;
+    border-radius: 10px;
+    background: #b5b4d1;
+    /* padding: 5px; */
+  }
+
+  .post-list li {
+    list-style: none;
+    padding: 5px;
+  }
+
+.title{
+  background: #1d1a69;
+}
+
+.title a:hover {
+  color: #b5b3b5;
+}
+
+  .title a {
+    color: white;
   }
   
   .post .title span {
     font-style: italic;
     font-size: 90%;
-    color: #7d7d7d;
   }
   
   .edit-link {
     display: block;
     margin: -1.5% 0 2% 0;
-  }
-  
-  .upvote-btn {
-    background-color: #197d0f;
-    transition: background-color .1s;
-  }
-  
-  .upvote-btn:hover {
-    background-color: #1f9c13;
   }
   
   .comment-form {
@@ -168,6 +180,10 @@
     margin-bottom: .5%;
     opacity: .6;
   }
+
+  .meta:hover {
+    color: #2f0c33;
+  }
   
   .new-post-form input {
     width: 300px;
@@ -175,6 +191,12 @@
   
   .edit-post-form {
     margin-bottom: 5%;
+  }
+
+  .username {
+    text-align: right;
+    color: white;
+    text-emphasis: none;
   }
   
   footer {

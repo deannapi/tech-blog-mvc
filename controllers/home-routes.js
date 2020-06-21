@@ -39,7 +39,7 @@ router.get("/post/:id", (req, res) => {
       id: req.params.id,
     },
     attributes: ["id", "post_url", "title", "created_at"],
-    include: [{ Comment, User }],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
       if (!dbPostData) {

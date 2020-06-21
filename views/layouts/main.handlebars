@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Blog</title>
+  <title>The Tech Blog</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -17,9 +17,9 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/dashboard">Dashboard</a></li>
           {{#if loggedIn}}
-          <li><a href="/logout">logout</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/logout">Logout</a></li>
           {{else}}
           <li><a href="/login">Login</a></li>
           {{/if}}
@@ -30,14 +30,13 @@
       {{{ body }}}
     </main>
     <footer>
-      Thanks for visiting!
+      Created By DeAnna Martinez
     </footer>
   </div>
 
 {{#if loggedIn}}
-<script src="/javascript/logout.js"></script>
+<script src="../../public/javascript/logout.js"></script>
 {{/if}}
-<script src="/javascript/login.js"></script>
 </body>
 
 </html>
