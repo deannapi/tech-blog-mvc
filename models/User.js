@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 // create our User model
 class User extends Model {}
 
-// define table columns and configuratins
+// define table columns and configurations
 User.init(
     {
         id: {

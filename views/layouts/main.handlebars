@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Tech Blog</title>
+  <title>Let's Talk Tech</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -12,14 +12,14 @@
   <div class="wrapper">
     <header>
       <h1>
-        The Tech Blog
+        Let's Talk Tech
       </h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
           {{#if loggedIn}}
           <li><a href="/dashboard">Dashboard</a></li>
-          <li class="logout"><a href="/logout">Logout</a></li>
+          <li class="logout"><a href="/logout" class="logout">Logout</a></li>
           {{else}}
           <li><a href="/login">Login</a></li>
           {{/if}}
@@ -34,7 +34,9 @@
     </footer>
   </div>
 
-<script src="/javascript/logout.js"></script>
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
