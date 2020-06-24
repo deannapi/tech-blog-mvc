@@ -47,6 +47,7 @@ router.get("/:id", (req, res) => {
       "post_url",
       "title",
       "created_at",
+      "updated_at"
      
     ],
     include: [
