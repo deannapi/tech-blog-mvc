@@ -58,8 +58,8 @@ A CMS-style blog-site where developers can publish their blog posts and comment 
         WHEN I am idle on the page for more than a set time
         THEN I am automatically signed out of the site 
 
-## :movie_camera: Demo
-![]()
+## :movie_camera: Try It Out Here
+[Let's Talk Tech](https://deanna-mvc-tech-blog.herokuapp.com/)
 
 ## :memo: Instructions
 
