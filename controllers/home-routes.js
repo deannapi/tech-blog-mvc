@@ -1,29 +1,17 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
+const sequelize = require("../config/connection");
 
+// Get all Posts
 router.get("/", (req, res) => {
   console.log(req.session);
   Post.findAll({
-    attributes: ["id", "post_content", "title", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
+    attributes: ["id", "title", "post_url", "created_at"],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
-      // pass a single post object into the homepage template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
+      console.log(posts);
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -35,7 +23,6 @@ router.get("/", (req, res) => {
     });
 });
 
-//   Render Log-in page @ /login
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -45,27 +32,14 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// Render single post page
+// Find a post by id
 router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "post_content", "title", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
+    attributes: ["id", "post_url", "title", "created_at"],
+    include: [ Comment, User ],
   })
     .then((dbPostData) => {
       if (!dbPostData) {
@@ -87,4 +61,5 @@ router.get("/post/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 module.exports = router;

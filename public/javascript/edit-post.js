@@ -2,8 +2,7 @@ async function editFormHandler(event) {
   event.preventDefault();
 
   const title = document.querySelector('input[name="post-title"]').value;
-  const post_content = document.querySelector('input[name="post-content"]')
-    .value;
+  const post_url = document.querySelector('input[name="post-url"]').value;
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
   ];
@@ -12,7 +11,7 @@ async function editFormHandler(event) {
     method: "PUT",
     body: JSON.stringify({
       title,
-      post_content,
+      post_url,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +19,7 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/dashboard/");
+    document.location.replace("/dashboard");
   } else {
     alert(response.statusText);
   }
