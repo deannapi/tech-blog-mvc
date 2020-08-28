@@ -1,5 +1,3 @@
-<div align="center">
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/deannapi/tech-blog-mvc)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/deannapi/tech-blog-mvc)
 ![GitHub last commit](https://img.shields.io/github/last-commit/deannapi/tech-blog-mvc)
@@ -7,14 +5,8 @@
 # Tech Blog (Model View Controller)
 A CMS-style blog-site where developers can publish their blog posts and comment on other developers’ posts as well.
 
-## :movie_camera: Try It Out Here
-[Let's Talk Tech](https://deanna-mvc-tech-blog.herokuapp.com/)
-
-![](screenshot-tech.jpg)
 
 ## :hammer: Tools
-</div>
-
 * [Express.js](https://expressjs.com/)
 * [Node.js](https://nodejs.org/en/)
 * [MySQL2](https://www.npmjs.com/package/mysql2)
@@ -66,8 +58,27 @@ A CMS-style blog-site where developers can publish their blog posts and comment 
         WHEN I am idle on the page for more than a set time
         THEN I am automatically signed out of the site 
 
-## Instructions
+## :movie_camera: Try It Out Here
+[Let's Talk Tech](https://deanna-mvc-tech-blog.herokuapp.com/)
+
+## :memo: Instructions
 
 `npm init`
 
-`npm install`
+`npm install express sequelize mysql2`
+
+`npm install express-handlebars`
+
+`npm install --save sequelize`
+
+`npm i express-session connect-session-sequelize`
+
+`npm i jest -D`
+
+`npm install dotenv`
+
+`npm install bcrypt`
+
+`npm install handlebars`
+
+`npm install express --save`
