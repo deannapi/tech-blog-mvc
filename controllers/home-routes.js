@@ -4,25 +4,25 @@ const { Post, User, Comment } = require("../models");
 
 router.get("/", (req, res) => {
   console.log(req.session);
-
   Post.findAll({
-    attributes: ["id", "title", "created_at", "post_content"],
+    attributes: ["id", "post_content", "title", "created_at"],
     include: [
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ["username", "twitter", "github"],
+          attributes: ["username"],
         },
       },
       {
         model: User,
-        attributes: ["username", "twitter", "github"],
+        attributes: ["username"],
       },
     ],
   })
     .then((dbPostData) => {
+      // pass a single post object into the homepage template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
       res.render("homepage", {
         posts,
@@ -35,6 +35,7 @@ router.get("/", (req, res) => {
     });
 });
 
+//   Render Log-in page @ /login
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -44,33 +45,25 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
-
-  res.render("signup");
-});
-
+// Render single post page
 router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "title", "created_at", "post_content"],
+    attributes: ["id", "post_content", "title", "created_at"],
     include: [
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ["username", "twitter", "github"],
+          attributes: ["username"],
         },
       },
       {
         model: User,
-        attributes: ["username", "twitter", "github"],
+        attributes: ["username"],
       },
     ],
   })
@@ -94,5 +87,4 @@ router.get("/post/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
-
 module.exports = router;

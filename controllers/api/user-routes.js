@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
-const withAuth = require("../../utils/auth");
+const { User } = require("../../models");
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -11,11 +10,11 @@ router.get("/", (req, res) => {
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(500).json.apply(err);
     });
 });
 
-// GET /api/users/1
+// GET /api/users/:id
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -27,14 +26,15 @@ router.get("/:id", (req, res) => {
         model: Post,
         attributes: ["id", "title", "post_content", "created_at"],
       },
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "created_at"],
-        include: {
-          model: Post,
-          attributes: ["title"],
-        },
-      },
+      //   // include the Comment model here:
+      //   {
+      //     model: Comment,
+      //     attributes: ['id', 'comment_text', 'created_at'],
+      //     include: {
+      //       model: Post,
+      //       attributes: ['title']
+      //     }
+      //   },
     ],
   })
     .then((dbUserData) => {
@@ -56,14 +56,10 @@ router.post("/", (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    twitter: req.body.twitter,
-    github: req.body.github,
   }).then((dbUserData) => {
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
-      req.session.twitter = dbUserData.twitter;
-      req.session.github = dbUserData.github;
       req.session.loggedIn = true;
 
       res.json(dbUserData);
@@ -71,7 +67,7 @@ router.post("/", (req, res) => {
   });
 });
 
-// LOGIN
+// POST /api/users/login
 router.post("/login", (req, res) => {
   User.findOne({
     where: {
@@ -79,30 +75,21 @@ router.post("/login", (req, res) => {
     },
   }).then((dbUserData) => {
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
+      res.status(400).json({ message: "No users with that email address!" });
       return;
     }
-
+    // Verify user
     const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password!" });
+      res.status(400).json({ message: "Incorrect Password!" });
       return;
     }
 
     req.session.save(() => {
-<<<<<<< HEAD
-<<<<<<< HEAD
       // declare session variables
-=======
->>>>>>> parent of f813a09... changed id error
       req.session.user_id = dbUserData.id;
-=======
-      req.session.user_id = dbUserData.user_id;
->>>>>>> parent of 000434e... fixed login
       req.session.username = dbUserData.username;
-      req.session.twitter = dbUserData.twitter;
-      req.session.github = dbUserData.github;
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: "You are now logged in!" });
@@ -110,6 +97,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+// POST /api/users/logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -121,7 +109,7 @@ router.post("/logout", (req, res) => {
 });
 
 // PUT /api/users/1
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
@@ -130,7 +118,7 @@ router.put("/:id", withAuth, (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData[0]) {
-        res.status(404).json({ message: "No user found with this id" });
+        res.status(404).json({ message: "No user info found with this id" });
         return;
       }
       res.json(dbUserData);
@@ -142,7 +130,7 @@ router.put("/:id", withAuth, (req, res) => {
 });
 
 // DELETE /api/users/1
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", (req, res) => {
   User.destroy({
     where: {
       id: req.params.id,
