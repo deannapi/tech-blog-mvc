@@ -91,7 +91,10 @@ router.post("/login", (req, res) => {
     }
 
     req.session.save(() => {
+<<<<<<< HEAD
       // declare session variables
+=======
+>>>>>>> parent of f813a09... changed id error
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.twitter = dbUserData.twitter;
